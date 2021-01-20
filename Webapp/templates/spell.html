@@ -1,0 +1,38 @@
+{% extends "base.html"%}
+{% block content%}
+
+
+    {% for i in range(0, spelllist|length) %}
+
+
+
+     <div class="Content-section">
+
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend> {{ spelllist[i].Name }}</legend>
+                {{ form.csrf_token() }}
+                {{ form.spell_id(value=i) }}
+                {{ form.add()}}
+
+                <p>Level: {{spelllist[i].Level}} {{spelllist[i].School}} </p>
+                <p>Casting Time: {{spelllist[i].Action_Type}}  Rituel: {{spelllist[i].Ritual}}    </p>
+                <p>Range: {{spelllist[i].Range}}</p>
+                <p>Components: {{spelllist[i].V_S_M}}</p>
+                <p>Matterial: {{spelllist[i].Component}}</p>
+                <p>Classes: {{spelllist[i].Caster}}</p>
+                <pre>{{spelllist[i].Description}}</pre>
+            </fieldset>
+        </form>
+
+    </div>
+
+
+
+
+    {% endfor %}
+
+
+    {{ debug }}
+{% endblock content%}

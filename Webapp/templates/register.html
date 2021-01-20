@@ -1,0 +1,96 @@
+{% extends "base.html"%}
+{% block content%}
+    <div class="Content-section">
+
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-gruop" >
+                <legend class="border-bottom mb-4" >Make Book</legend>
+
+                <div class="form-group">
+                    {{form.bookname.label(class="form-control-label")}}
+
+                    {% if form.bookname.errors %}
+                        {{form.bookname(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback" >
+                            {%for error in form.bookname.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        {{form.bookname(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{form.magicword.label(class="form-control-label")}}
+                    {% if form.magicword.errors %}
+                        {{form.magicword(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback" >
+                            {%for error in form.magicword.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        {{form.magicword(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{form.magicword_confirm.label(class="form-control-label")}}
+                    {% if form.magicword_confirm.errors %}
+                        {{form.magicword_confirm(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback" >
+                            {%for error in form.magicword_confirm.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        {{form.magicword_confirm(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+                <div class="form-group" >
+                    {{form.charator_class.label(class="form-control-label")}}
+                    {% if form.charator_class.errors %}
+                        {{form.charator_class(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback" >
+                            {%for error in form.charator_class.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        {{form.charator_class(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div >
+                <div class="form-group">
+                    {{form.charator_level.label(class="form-control-label")}}
+                    {% if form.charator_level.errors %}
+                        {{form.charator_level(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback" >
+                            {%for error in form.charator_level.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+                        {{form.charator_level(class="form-control form-control-lg")}}
+                    {% endif %}
+                </div>
+
+
+            </fieldset>
+            <fieldset>
+                <div>{{form.submit(class="btn btn-outline-info")}}</div>
+            </fieldset>
+        </form>
+    </div>
+<p>{{debug}}</p>
+<p>{{debug1}}</p>
+{% endblock content%}

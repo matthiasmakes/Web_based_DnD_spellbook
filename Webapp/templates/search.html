@@ -1,0 +1,101 @@
+{% extends "base.html"%}
+{% block content%}
+
+    <div class="Content-section"></div>
+
+    <form method="get" action="">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token }}
+        <fieldset>
+            <legend> Search Spells</legend>
+            <div>
+                {{form.spellname.label()}}
+                {{form.spellname()}}
+            </div>
+            <div>
+                {{form.spelllevel.label()}}
+                {{form.spelllevel()}}
+            </div>
+            <div>
+                {{form.spellschool.label()}}
+                {{form.spellschool()}}
+            </div>
+            <div>
+                {{form.spellritual.label()}}
+                {{form.spellritual()}}
+            </div>
+            <div>
+                {{form.spellaction.label()}}
+                {{form.spellaction()}}
+            </div>
+            <div>
+                {{form.spellrange.label()}}
+                {{form.spellrange()}}
+            </div>
+            <div>
+                {{form.spellV.label()}}
+                {{form.spellV()}}
+                {{form.spellS.label()}}
+                {{form.spellS()}}
+                {{form.spellM.label()}}
+                {{form.spellM()}}
+            </div>
+            <div>
+                {{form.spellcomponent.label()}}
+                {{form.spellcomponent()}}
+            </div>
+            <div>
+                {{form.spellcaster.label()}}
+                {{form.spellcaster()}}
+            </div>
+            <div>
+                {{form.spellsource.label()}}
+                {{form.spellsource()}}
+            </div>
+            <div>
+                {{form.spelldescription.label()}}
+                {{form.spelldescription()}}
+            </div>
+
+        </fieldset>
+        <fieldset>
+            <div>{{form.submit()}}</div>
+        </fieldset>
+    </form>
+
+{% if spelllist %}
+        {% for spell in  spelllist %}
+
+
+
+     <div class="Content-section">
+
+        <form method="post" action="">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend> {{ spell.Name }}</legend>
+                {{ form2.csrf_token() }}
+                {{ form2.spell_id(value=spell.ID) }}
+                {{ form2.add()}}
+
+                <p>Level: {{spell.Level}} {{spell.School}} </p>
+                <p>Casting Time: {{spell.Action_Type}}  Rituel: {{spell.Ritual}}    </p>
+                <p>Range: {{spell.Range}}</p>
+                <p>Components: {{spell.V_S_M}}</p>
+                <p>Matterial: {{spell.Component}}</p>
+                <p>Classes: {{spell.Caster}}</p>
+                <pre>{{spell.Description}}</pre>
+            </fieldset>
+        </form>
+
+    </div>
+
+
+
+
+    {% endfor %}
+
+{% endif %}
+
+
+{% endblock content%}

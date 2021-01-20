@@ -1,0 +1,85 @@
+{% extends "base.html"%}
+{% block content%}
+    <h1>{{ current_user.name }}</h1>
+    <h2>{{ current_user.caster }} Level: {{ current_user.level}}  </h2>
+
+
+  <div class="Content-section"></div>
+
+    <a href="{{ url_for('edit')}}">EDIT</a>
+
+
+<br>
+<br>
+<br>
+
+<div>
+    <form method="get" action="">
+        {{ formsort.hidden_tag() }}
+        {{ formsort.csrf_token }}
+               <div>
+                   <p>Level:</p>
+                   {{formsort.level0.label()}}
+                   {{formsort.level0()}}
+                   {{formsort.level1.label()}}
+                   {{formsort.level1()}}
+                   {{formsort.level2.label()}}
+                   {{formsort.level2()}}
+                   {{formsort.level3.label()}}
+                   {{formsort.level3()}}
+                   {{formsort.level4.label()}}
+                   {{formsort.level4()}}
+                   {{formsort.level5.label()}}
+                   {{formsort.level5()}}
+                   {{formsort.level6.label()}}
+                   {{formsort.level6()}}
+                   {{formsort.level7.label()}}
+                   {{formsort.level7()}}
+                   {{formsort.level8.label()}}
+                   {{formsort.level8()}}
+                   {{formsort.level9.label()}}
+                   {{formsort.level9()}}
+                   {{formsort.Sort()}}
+               </div>
+
+    </form>
+
+</div>
+
+<br>
+<br>
+<br>
+
+
+
+{% if spelllist %}
+    {% for spell in  spelllist %}
+
+
+
+     <div class="Content-section">
+
+            <fieldset>
+                <legend> {{ spell.Name }}</legend>
+                <p>Level: {{spell.Level}} {{spell.School}} </p>
+                <p>Casting Time: {{spell.Action_Type}}  Rituel: {{spell.Ritual}}    </p>
+                <p>Range: {{spell.Range}}</p>
+                <p>Components: {{spell.V_S_M}}</p>
+                <p>Matterial: {{spell.Component}}</p>
+                <p>Classes: {{spell.Caster}}</p>
+                <pre>{{spell.Description}}</pre>
+            </fieldset>
+
+    </div>
+
+
+
+
+    {% endfor %}
+
+
+{%endif%}
+
+
+    {{ debug }}
+{% endblock content%}

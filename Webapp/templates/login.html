@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{% block content%}
+    <div class="Content-section"></div>
+
+    <form method="post" action="">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend> Open book</legend>
+            <div>
+                {{form.bookname.label()}}
+                {{form.bookname()}}
+            </div>
+            <div>
+                {{form.magicword.label()}}
+                {{form.magicword()}}
+            </div>
+            <div>
+                {{form.remember.label()}}
+                {{form.remember()}}
+            </div>
+        </fieldset>
+        <fieldset>
+            <div>{{form.submit()}}</div>
+        </fieldset>
+    </form>
+    {{ debug }}
+{% endblock content%}
