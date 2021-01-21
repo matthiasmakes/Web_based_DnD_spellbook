@@ -31,6 +31,7 @@ class SpellBooks(db.Model,UserMixin):
     name = db.Column(db.String(50), unique=True)
     magic_word = db.Column(db.String())
     caster = db.Column(db.String())
+    caster_modifier = db.Column(db.Integer())
     level = db.Column(db.Integer())
     spell_id = db.Column(db.String(), default="")
 

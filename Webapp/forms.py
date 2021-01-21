@@ -67,6 +67,8 @@ class Editspellbook(FlaskForm):
 class Endedit(FlaskForm):
     done = SubmitField("Done")
     char_level = SelectField("Level", choices=list(range(1, 21)))
+    char_mod = SelectField("Modifier", choices=list(range(-5, 11)))
+    random = SubmitField("Random")
 class Sort(FlaskForm):
     Sort = SubmitField("Sort")
     spellname = StringField("Spell name")

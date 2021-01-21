@@ -4,6 +4,8 @@ from Webapp.forms import *
 from Webapp import app, db
 from flask_login import login_user, current_user, logout_user, login_required
 from Webapp.method import *
+from random import *
+
 
 # make model
 @app.route('/')
@@ -195,6 +197,7 @@ def book():
 def edit():
     form = Endedit()
     form.char_level.default = current_user.level
+    form.char_mod.default = current_user.caster_modifier
     form.process()
     form2 = Editspellbook()
     formsort = Sort(request.args)
@@ -209,9 +212,38 @@ def edit():
         for spell in spelllist:
             spell_from_db.append(Spells.query.get(spell))
 
+    if form.random.raw_data:
+        levl = int(form.char_level.raw_data[0])
+        caster = current_user.caster
+        modifier = int(form.char_mod.raw_data[0])
+        max_spells = levl + modifier
+        if max_spells <= 0:
+            max_spells = 1
+        max_spell_lvl = int(levl / 1.5)
+        if max_spell_lvl >= 10:
+            max_spell_lvl = 9
+        potential_spells = Spells.query.filter(Spells.Level < max_spell_lvl+1).all()
+        new_spell_lst = list()
+        for i in range(0, max_spells):
+            r = randrange(0, potential_spells.__len__())
+            new_spell_lst.append(potential_spells.pop(r))
+        id_lst = list()
+        for spell in new_spell_lst:
+            id_lst.append(spell.ID)
+        current_user.spell_id = list_to_string(id_lst)
+        db.session.add(current_user)
+        db.session.commit()
+
+
+
+
+
+
+
     if form.done.raw_data:
 
         current_user.level = form.char_level.raw_data[0]
+        current_user.caster_modifier = form.char_mod.raw_data[0]
         db.session.add(current_user)
         db.session.commit()
         flash("book updated")

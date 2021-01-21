@@ -5,13 +5,14 @@
 
 <form method="post" action="">
     <h1>{{ current_user.name }}</h1>
-    <h2>{{ current_user.caster }} Level: {{ form1.char_level}}  </h2>
+    <h2>{{ current_user.caster }} Level: {{ form1.char_level}} Modifier: {{ form1.char_mod}} </h2>
 
 
 
         {{ form1.hidden_tag() }}
         {{ form1.csrf_token }}
                <div>
+                   {{form1.random()}}
                    {{form1.done()}}
                </div>
 

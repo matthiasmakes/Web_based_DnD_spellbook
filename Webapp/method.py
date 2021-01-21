@@ -11,7 +11,7 @@ def safe_input(string):
 def list_to_string(list):
     string_out = ""
     for stuff in list:
-        string_out = string_out + stuff + ","
+        string_out = string_out + str(stuff) + ","
 
 
     return string_out[:-1]
