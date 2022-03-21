@@ -8,6 +8,24 @@ def safe_input(string):
     safe_string = list_to_string(regex.findall(string))
     return safe_string[:-1]
 
+def safe_input_list(list):
+    if list == None:
+        return None
+    outlist = []
+    for string in list:
+        outlist.append(list_to_string(regex.findall(string))[:-1])
+    return outlist
+
+
+def Multicaster_ilike(list):
+    if list == None:
+        return None
+    long =""
+    for string in list:
+        long = long  + f"Spells.Caster.ilike('%' + '{string}' + '%'),"
+
+    return "," + long[:-1]
+
 def list_to_string(list):
     string_out = ""
     for stuff in list:

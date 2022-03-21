@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, BooleanField, HiddenField
+from wtforms import StringField, SubmitField, SelectField, BooleanField, HiddenField, SelectMultipleField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 from Webapp.models import SpellBooks, Spells
 
@@ -39,7 +39,7 @@ class SeachSpellsADV(FlaskForm):
     spellS = BooleanField("S")
     spellM = BooleanField("M")
     spellcomponent = BooleanField("Material")
-    spellcaster = SelectField("Class")
+    spellcaster = SelectMultipleField("Class")
     spellsource = SelectField("Source")
     spelldescription = StringField("Description")
     submit = SubmitField("Search")
