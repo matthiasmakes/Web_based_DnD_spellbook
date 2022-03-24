@@ -395,7 +395,7 @@ def search():
         else:
             query_component = ""
         spellcaster = safe_input_list(form.spellcaster.data)
-        spellsource = safe_input(form.spellsource.data)
+        spellsource = safe_input_list(form.spellsource.data)
 
         spelldescription = safe_input(form.spelldescription.data)
 
@@ -408,9 +408,8 @@ def search():
         query_base = "Spells.Name.ilike(('%' + spellname + '%')),Spells.Range.ilike(('%' + spellrange + '%')), Spells.School.ilike(('%' + spellschool + '%')),Spells.Action_Type.ilike(('%' + spellaction + '%')),Spells.V_S_M.ilike(('%' + spellV + '%' + '%' + spellS + '%' + '%' + spellM + '%')),Spells.Description.ilike(('%' + spelldescription + '%'))"
         # OC query_base = "Spells.Name.ilike(('%' + spellname + '%')),Spells.Range.ilike(('%' + spellrange + '%')),Spells.Caster.ilike(('%' + spellcaster + '%')), Spells.School.ilike(('%' + spellschool + '%')),Spells.Action_Type.ilike(('%' + spellaction + '%')),Spells.V_S_M.ilike(('%' + spellV + '%' + '%' + spellS + '%' + '%' + spellM + '%')),Spells.Description.ilike(('%' + spelldescription + '%'))"
         function_end = ").all()"
-
         temp = function_string + query_base + query_level + query_ritual + query_component+ Multicaster_ilike(spellcaster) + function_end
-        spell_list = eval(function_string + query_base + query_level + query_ritual + query_component+ Multicaster_ilike(spellcaster) + function_end)
+        spell_list = eval(function_string + query_base + query_level + query_ritual + query_component+ Multicaster_ilike(spellcaster) + SpellsSource_ilike(spellsource) + function_end)
 
 
     if form2.validate_on_submit():

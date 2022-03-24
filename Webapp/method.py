@@ -26,6 +26,16 @@ def Multicaster_ilike(list):
 
     return "," + long[:-1]
 
+def SpellsSource_ilike(list):
+
+    if list == None:
+        return None
+    long =""
+    for string in list:
+        long = long  + f"Spells.Source.ilike('%' + '{string}' + '%'),"
+
+    return long[:-1]
+
 def list_to_string(list):
     string_out = ""
     for stuff in list:

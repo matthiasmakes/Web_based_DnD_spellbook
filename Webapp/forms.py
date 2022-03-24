@@ -40,7 +40,7 @@ class SeachSpellsADV(FlaskForm):
     spellM = BooleanField("M")
     spellcomponent = BooleanField("Material")
     spellcaster = SelectMultipleField("Class")
-    spellsource = SelectField("Source")
+    spellsource = SelectMultipleField("Source")
     spelldescription = StringField("Description")
     submit = SubmitField("Search")
 
